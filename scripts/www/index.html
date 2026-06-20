@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <!-- 适配手机 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>你喜欢我吗</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "微软雅黑", sans-serif;
+        }
+        body {
+            min-height: 100vh;
+            background: #ffe6ef;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+        .box {
+            background: #fff;
+            padding: 60px 40px;
+            border-radius: 20px;
+            box-shadow: 0 0 20px #ffb6c1;
+            text-align: center;
+        }
+        .title {
+            font-size: 28px;
+            color: #ff4477;
+            margin-bottom: 40px;
+        }
+        .btn-group {
+            display: flex;
+            gap: 30px;
+            justify-content: center;
+            position: relative;
+        }
+        button {
+            width: 120px;
+            height: 50px;
+            font-size: 18px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        #yesBtn {
+            background: #ff4477;
+            color: white;
+        }
+        #noBtn {
+            background: #ddd;
+            color: #333;
+            position: relative;
+        }
+        /* 成功页面隐藏 */
+        .success-page {
+            display: none;
+        }
+        .success-text {
+            font-size: 32px;
+            color: #ff2255;
+        }
+    </style>
+</head>
+<body>
+    <!-- 初始提问页面 -->
+    <div class="box" id="askBox">
+        <div class="title">你喜欢我吗？</div>
+        <div class="btn-group">
+            <button id="yesBtn">喜欢你</button>
+            <button id="noBtn">不喜欢你</button>
+        </div>
+    </div>
+
+    <!-- 选喜欢后展示的成功页面 -->
+    <div class="box success-page" id="successBox">
+        <div class="success-text">太好了！我也超级喜欢你❤️</div>
+    </div>
+
+    <script>
+        const askBox = document.getElementById('askBox');
+        const successBox = document.getElementById('successBox');
+        const yesBtn = document.getElementById('yesBtn');
+        const noBtn = document.getElementById('noBtn');
+
+        // 点击喜欢，切换成功页面
+        yesBtn.onclick = function () {
+            askBox.style.display = 'none';
+            successBox.style.display = 'block';
+        }
+
+        // 鼠标移到不喜欢按钮，按钮自动逃跑
+        noBtn.onmouseover = function () {
+            // 随机偏移位置
+            const x = Math.random() * 200 - 100;
+            const y = Math.random() * 200 - 100;
+            noBtn.style.transform = `translate(${x}px, ${y}px)`;
+        }
+
+        // 强行点击不喜欢也会弹窗追问
+        noBtn.onclick = function () {
+            alert("再好好想一想，你真的不喜欢我吗？");
+        }
+    </script>
+</body>
+</html>
